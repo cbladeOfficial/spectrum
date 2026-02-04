@@ -225,7 +225,18 @@ Public Class Form1
         Dim ni As Integer = currentFileIndex + 1
         ListView1.Items(ni).Selected = True
         ListView1.Items(ni).Focused = True
-        PlayFile(ListView1.SelectedItems(0).Tag.ToString())
+        PlayFile(ListView1.Items(ni).Tag.ToString())
+        currentFile = ListView1.Items(ni).Tag.ToString()
+    End Sub
+
+    Sub PlayFromPrevBtn()
+        Dim currentFileIndex = GetIndexByTag(currentFile)
+        ListView1.SelectedItems.Clear()
+        Dim ni As Integer = currentFileIndex - 1
+        ListView1.Items(ni).Selected = True
+        ListView1.Items(ni).Focused = True
+        PlayFile(ListView1.Items(ni).Tag.ToString())
+        currentFile = ListView1.Items(ni).Tag.ToString()
     End Sub
 
     Public Function GetIndexByTag(ByVal tagValue As Object) As Integer
@@ -251,7 +262,6 @@ Public Class Form1
 
         If isShuffle Then
             ShuffleList(playOrder)
-            Debug.WriteLine("shuffling works 2")
         End If
 
         currentIndex = -1
@@ -279,6 +289,7 @@ Public Class Form1
             item.EnsureVisible()
             Dim filePath = item.Tag.ToString()
             PlayFile(filePath)
+            currentFile = ListView1.Items(lvIndex).Tag.ToString()
         Catch ex As Exception
 
         End Try
@@ -342,6 +353,9 @@ Public Class Form1
 
         Dim title = ""
 
+        Dim curSong As String = ""
+        Dim curArtists As String = ""
+
         If ((lastTab = 0 OrElse lastTab = 1) And (curTabIndex <> 6)) Or (HasExtension(currentFile, {".mp3", ".flac", ".wav", ".m4a", ".ogg", ".aac", ".opus"})) Or curTabIndex = 9 Or lastTab = 9 Then
             If EnableVisualizationsToolStripMenuItem.Checked Then
                 ShowVisualizerAsync()
@@ -350,6 +364,7 @@ Public Class Form1
             End If
 
             Try
+
                 Using t = TagLib.File.Create(path)
                     title = If(String.IsNullOrEmpty(t.Tag.Title),
                                IO.Path.GetFileNameWithoutExtension(path),
@@ -357,10 +372,18 @@ Public Class Form1
 
                     Dim artist = String.Join(", ", t.Tag.Performers)
 
-                    labelSong.Text = title
-                    labelSong.ForeColor = Color.White
-                    labelArtist.Text = artist
-                    songTextQA.Text = title
+                    If labelSong.Text <> curSong Then
+                        labelSong.Text = title
+                        labelSong.ForeColor = Color.White
+                        labelArtist.Text = artist
+                        songTextQA.Text = title
+                    Else
+                        labelSong.Text = curSong
+                        labelSong.ForeColor = Color.White
+                        labelArtist.Text = curArtists
+                        songTextQA.Text = curSong
+                    End If
+
 
                     ''debug.writeline("artists: " & String.Join(", ", t.Tag.Performers))
 
@@ -373,6 +396,9 @@ Public Class Form1
                     }
 
                     cursonginfos2 = curSongInfos.Where(Function(s) Not String.IsNullOrWhiteSpace(s)).ToArray()
+
+                    curSong = title
+                    curArtists = artist
 
                     If t.Tag.Pictures.Length > 0 Then
                         Using ms As New IO.MemoryStream(t.Tag.Pictures(0).Data.Data)
@@ -461,22 +487,9 @@ Public Class Form1
                 ChooseSBTab(lastTab)
             End If
         End If
-
-        'If lastTab = 4 Then
-        '    If My.Settings.showVizOnStart Then
-        '        EnableVisualizationsToolStripMenuItem.Checked = True
-        '        nowPlayingText.Visible = False
-        '        visualizer.Visible = True
-        '    Else
-        '        EnableVisualizationsToolStripMenuItem.Checked = False
-        '        visualizer.Visible = False
-        '        nowPlayingText.Visible = True
-        '    End If
-        'End If
-
         If lastTab = 2 Then
-            VideoView1.Visible = True
-        End If
+                VideoView1.Visible = True
+            End If
     End Sub
     Sub PlayFile(path As String, Optional pos As Long = 0)
         If lastTab <> 6 Then PFCodeMain(path, pos)
@@ -1675,13 +1688,6 @@ $"window.chrome.webview.postMessage({{
         End Try
 
         If e.Button = MouseButtons.Right Then
-            If ListView1.SelectedItems.Count > 1 Or ListView1.SelectedItems.Count <= 0 Then
-                ChangeAlbumArtToolStripMenuItem.Enabled = False
-                EditMetadataToolStripMenuItem.Enabled = False
-            Else
-                ChangeAlbumArtToolStripMenuItem.Enabled = True
-                EditMetadataToolStripMenuItem.Enabled = True
-            End If
 
             If curTabIndex = 4 Or ListView1.SelectedItems.Count <= 0 Then
                 AddToToolStripMenuItem.Enabled = False
@@ -1849,7 +1855,7 @@ $"window.chrome.webview.postMessage({{
                                                    End If
 
                                                    If isShuffle = True Then
-                                                       Debug.WriteLine("shiffle is supposed to work if this is printed")
+                                                       'Debug.WriteLine("shiffle is supposed to work if this is printed")
                                                        If Me.InvokeRequired Then
                                                            Me.BeginInvoke(New Action(AddressOf PlayNext))
                                                        Else
@@ -1979,6 +1985,9 @@ $"window.chrome.webview.postMessage({{
         sb7.BackColor = Color.FromArgb(16, 16, 16)
         sbb1.BackColor = Color.FromArgb(16, 16, 16)
 
+        'ListView1.AllowDrop = False
+
+
         Select Case index
             Case 1
                 curTabIndex = index
@@ -2026,12 +2035,14 @@ $"window.chrome.webview.postMessage({{
                 ShowListView()
                 CacheOriginalOrder()
 
+
             Case 5
                 curTabIndex = index
                 sb5.BackColor = Color.FromArgb(6, 6, 6)
                 ListView1.Items.Clear()
                 ListView1.Columns.Clear()
                 ShowListView()
+                MsgBox("Coming soon!", MsgBoxStyle.Information, "Info")
 
             Case 6
                 curTabIndex = index
@@ -2041,11 +2052,11 @@ $"window.chrome.webview.postMessage({{
                 If InvokeRequired Then
                     BeginInvoke(Sub()
                                     RefreshPL()
-                                    PopulatePLUI()
+                                    'PopulatePLUI()
                                 End Sub)
                 Else
                     RefreshPL()
-                    PopulatePLUI()
+                    'PopulatePLUI()
                 End If
 
                 ShowListView()
@@ -2058,6 +2069,7 @@ $"window.chrome.webview.postMessage({{
                 ListView1.Columns.Clear()
                 ShowListView()
                 CacheOriginalOrder()
+                MsgBox("Coming soon! Meanwhile check out the guide from the GitHub repository!", MsgBoxStyle.Information, "Info")
 
             Case 8
                 curTabIndex = index
@@ -2068,6 +2080,9 @@ $"window.chrome.webview.postMessage({{
         If songTextQA.Text = "-" Or songTextQA.Text = "" Then GetIcons()
     End Sub
 
+    Sub PlayDisc()
+        Throw New NotImplementedException("Disc playback coming soon!!")
+    End Sub
     Public Sub sbb1_Click(sender As Object, e As EventArgs) Handles sbb1.Click
         ChooseSBTab(8)
     End Sub
@@ -2650,9 +2665,15 @@ $"window.chrome.webview.postMessage({{
         fieldI += 1
         If fieldI > 4 Then fieldI = 0
         Try
-            If Not cursonginfos2(fieldI) = "By " Then nowPlayingText.Text = cursonginfos2(fieldI)
+            If Not cursonginfos2(fieldI) = "By " Then
+                nowPlayingText.Text = cursonginfos2(fieldI)
+            Else
+                Exit Try
+            End If
         Catch ex As IndexOutOfRangeException
             nowPlayingText.Text = cursonginfos2(0)
+        Catch ex As Exception
+
         End Try
 
 
@@ -2912,13 +2933,17 @@ $"window.chrome.webview.postMessage({{
         End If
     End Sub
 
+    Private dropIndex As Integer = -1
     Public Sub ListView1_DragOver(sender As Object, e As DragEventArgs) Handles ListView1.DragOver
         If curTabIndex = 9 Then
 
-            If e.Data.GetDataPresent(GetType(List(Of ListViewItem))) Then
-                e.Effect = DragDropEffects.Move
+            Dim pt = ListView1.PointToClient(New Point(e.X, e.Y))
+            Dim item = ListView1.GetItemAt(pt.X, pt.Y)
+
+            If item Is Nothing Then
+                dropIndex = ListView1.Items.Count
             Else
-                e.Effect = DragDropEffects.None
+                dropIndex = item.Index
             End If
         End If
     End Sub
@@ -2933,12 +2958,10 @@ $"window.chrome.webview.postMessage({{
             Dim insertIndex As Integer =
         If(targetItem Is Nothing, ListView1.Items.Count, targetItem.Index)
 
-            ' Remove originals
             For Each item In ListView1.SelectedItems.Cast(Of ListViewItem).ToList()
                 ListView1.Items.Remove(item)
             Next
 
-            ' Insert in order
             For i = 0 To draggedItems.Count - 1
                 ListView1.Items.Insert(insertIndex + i, draggedItems(i))
             Next
@@ -2946,6 +2969,26 @@ $"window.chrome.webview.postMessage({{
             SavePlaylistFromListView()
         End If
     End Sub
+
+    Private Sub UpdateRadioOrderFromListView()
+        Dim path = Application.StartupPath & "\radios\radios.yaml"
+
+        Dim radios = New List(Of RadioStation)
+
+        radios.Clear()
+
+        radios = radios _
+    .GroupBy(Function(r) r.id) _
+    .Select(Function(g) g.First()) _
+    .ToList()
+
+        For Each item As ListViewItem In ListView1.Items
+            radios.Add(CType(item.Tag, RadioStation))
+        Next
+
+        SaveRadios(path, radios)
+    End Sub
+
 
     Public Sub SavePlaylistFromListView()
         currentPlaylist.Files.Clear()
@@ -2962,7 +3005,7 @@ $"window.chrome.webview.postMessage({{
         Dim radios = LoadRadios(path)
 
         ' Remove by ID / URL / Name (URL is safest)
-        radios.RemoveAll(Function(r) r.stream_url = radioToRemove)
+        radios.RemoveAll(Function(r) r.id = radioToRemove)
 
         SaveRadios(path, radios)
 
@@ -2984,6 +3027,7 @@ $"window.chrome.webview.postMessage({{
 
     End Sub
 
+    'Private curRadioId As
 
     Public Sub DeleteSelectedToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSelectedToolStripMenuItem.Click
         Dim confirmMsg As DialogResult = MessageBox.Show("Are you sure you want to permanently delete these files from your system? This action cannot be undone!", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
@@ -3009,7 +3053,11 @@ $"window.chrome.webview.postMessage({{
                     songTextQA.Text = currentPlaylist.Name.ToString()
                     currentPlaylist.Save()
                 ElseIf curTabIndex = 4 Then
-                    RemoveRadio(Application.StartupPath & "\radios\radios.yaml", currentFile)
+                    Dim selRadio As RadioStation = CType(ListView1.SelectedItems(0).Tag, RadioStation)
+                    RemoveRadio(Application.StartupPath & "\radios\radios.yaml", selRadio.id)
+                    GetIcons()
+                    ChooseCorrectIcon()
+                    songTextQA.Text = "-"
                     RefreshRadios()
                 End If
             End If
@@ -3037,5 +3085,33 @@ $"window.chrome.webview.postMessage({{
     Public Sub LinkLabel211_Click(sender As Object, e As EventArgs) Handles LinkLabel211.Click
         radioWindowFlag = 1
         EditRadioInfo.ShowDialog()
+    End Sub
+
+    Private Sub ListView1_DragEnter(sender As Object, e As DragEventArgs) Handles ListView1.DragEnter
+        If e.Data.GetDataPresent(GetType(List(Of ListViewItem))) Then
+            e.Effect = DragDropEffects.Move
+        Else
+            e.Effect = DragDropEffects.None
+        End If
+    End Sub
+
+    Private Sub nextBtn_Click(sender As Object, e As EventArgs) Handles nextBtn.Click
+        If _mediaPlayer.IsPlaying Then
+            Try
+                PlayFromNextBtn()
+            Catch ex As Exception
+
+            End Try
+        End If
+    End Sub
+
+    Private Sub previousBtn_Click(sender As Object, e As EventArgs) Handles previousBtn.Click
+        If _mediaPlayer.IsPlaying Then
+            Try
+                PlayFromPrevBtn()
+            Catch ex As Exception
+
+            End Try
+        End If
     End Sub
 End Class

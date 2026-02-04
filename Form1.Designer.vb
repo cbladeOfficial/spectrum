@@ -43,16 +43,15 @@ Partial Class Form1
         Me.rsContent = New System.Windows.Forms.Panel()
         Me.quickActionsPane = New System.Windows.Forms.Panel()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.LinkLabel24 = New wyDay.Controls.LinkLabel2()
         Me.LinkLabel21 = New wyDay.Controls.LinkLabel2()
         Me.LinkLabel22 = New wyDay.Controls.LinkLabel2()
-        Me.LinkLabel25 = New wyDay.Controls.LinkLabel2()
         Me.LinkLabel26 = New wyDay.Controls.LinkLabel2()
         Me.LinkLabel27 = New wyDay.Controls.LinkLabel2()
         Me.LinkLabel23 = New wyDay.Controls.LinkLabel2()
         Me.LinkLabel28 = New wyDay.Controls.LinkLabel2()
         Me.LinkLabel29 = New wyDay.Controls.LinkLabel2()
         Me.LinkLabel210 = New wyDay.Controls.LinkLabel2()
+        Me.LinkLabel211 = New wyDay.Controls.LinkLabel2()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.qaPaneInfo = New System.Windows.Forms.Panel()
@@ -97,9 +96,6 @@ Partial Class Form1
         Me.DeleteSelectedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddToToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ChangeAlbumArtToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditMetadataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.CreatePlaylistToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditPlaylistToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
@@ -120,7 +116,6 @@ Partial Class Form1
         Me.ContextMenu1 = New System.Windows.Forms.ContextMenu()
         Me.MenuItem6 = New System.Windows.Forms.MenuItem()
         Me.vizTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.LinkLabel211 = New wyDay.Controls.LinkLabel2()
         Me.MenuStrip1.SuspendLayout()
         Me.rightSidebar.SuspendLayout()
         Me.rsContent.SuspendLayout()
@@ -238,10 +233,8 @@ Partial Class Form1
         '
         'FlowLayoutPanel1
         '
-        Me.FlowLayoutPanel1.Controls.Add(Me.LinkLabel24)
         Me.FlowLayoutPanel1.Controls.Add(Me.LinkLabel21)
         Me.FlowLayoutPanel1.Controls.Add(Me.LinkLabel22)
-        Me.FlowLayoutPanel1.Controls.Add(Me.LinkLabel25)
         Me.FlowLayoutPanel1.Controls.Add(Me.LinkLabel26)
         Me.FlowLayoutPanel1.Controls.Add(Me.LinkLabel27)
         Me.FlowLayoutPanel1.Controls.Add(Me.LinkLabel23)
@@ -256,22 +249,11 @@ Partial Class Form1
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(322, 310)
         Me.FlowLayoutPanel1.TabIndex = 0
         '
-        'LinkLabel24
-        '
-        Me.LinkLabel24.ForeColor = System.Drawing.Color.White
-        Me.LinkLabel24.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel24.Location = New System.Drawing.Point(13, 13)
-        Me.LinkLabel24.Name = "LinkLabel24"
-        Me.LinkLabel24.RegularColor = System.Drawing.Color.Empty
-        Me.LinkLabel24.Size = New System.Drawing.Size(84, 16)
-        Me.LinkLabel24.TabIndex = 3
-        Me.LinkLabel24.Text = "Add to Playlist"
-        '
         'LinkLabel21
         '
         Me.LinkLabel21.ForeColor = System.Drawing.Color.White
         Me.LinkLabel21.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel21.Location = New System.Drawing.Point(103, 13)
+        Me.LinkLabel21.Location = New System.Drawing.Point(13, 13)
         Me.LinkLabel21.Name = "LinkLabel21"
         Me.LinkLabel21.RegularColor = System.Drawing.Color.Empty
         Me.LinkLabel21.Size = New System.Drawing.Size(72, 16)
@@ -282,29 +264,18 @@ Partial Class Form1
         '
         Me.LinkLabel22.ForeColor = System.Drawing.Color.White
         Me.LinkLabel22.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel22.Location = New System.Drawing.Point(181, 13)
+        Me.LinkLabel22.Location = New System.Drawing.Point(91, 13)
         Me.LinkLabel22.Name = "LinkLabel22"
         Me.LinkLabel22.RegularColor = System.Drawing.Color.Empty
         Me.LinkLabel22.Size = New System.Drawing.Size(58, 16)
         Me.LinkLabel22.TabIndex = 5
         Me.LinkLabel22.Text = "Eject Disc"
         '
-        'LinkLabel25
-        '
-        Me.LinkLabel25.ForeColor = System.Drawing.Color.White
-        Me.LinkLabel25.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel25.Location = New System.Drawing.Point(13, 35)
-        Me.LinkLabel25.Name = "LinkLabel25"
-        Me.LinkLabel25.RegularColor = System.Drawing.Color.Empty
-        Me.LinkLabel25.Size = New System.Drawing.Size(107, 16)
-        Me.LinkLabel25.TabIndex = 7
-        Me.LinkLabel25.Text = "Change Album Art"
-        '
         'LinkLabel26
         '
         Me.LinkLabel26.ForeColor = System.Drawing.Color.White
         Me.LinkLabel26.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel26.Location = New System.Drawing.Point(126, 35)
+        Me.LinkLabel26.Location = New System.Drawing.Point(155, 13)
         Me.LinkLabel26.Name = "LinkLabel26"
         Me.LinkLabel26.RegularColor = System.Drawing.Color.Empty
         Me.LinkLabel26.Size = New System.Drawing.Size(95, 16)
@@ -315,7 +286,7 @@ Partial Class Form1
         '
         Me.LinkLabel27.ForeColor = System.Drawing.Color.White
         Me.LinkLabel27.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel27.Location = New System.Drawing.Point(13, 57)
+        Me.LinkLabel27.Location = New System.Drawing.Point(13, 35)
         Me.LinkLabel27.Name = "LinkLabel27"
         Me.LinkLabel27.RegularColor = System.Drawing.Color.Empty
         Me.LinkLabel27.Size = New System.Drawing.Size(104, 16)
@@ -326,7 +297,7 @@ Partial Class Form1
         '
         Me.LinkLabel23.ForeColor = System.Drawing.Color.White
         Me.LinkLabel23.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel23.Location = New System.Drawing.Point(123, 57)
+        Me.LinkLabel23.Location = New System.Drawing.Point(123, 35)
         Me.LinkLabel23.Name = "LinkLabel23"
         Me.LinkLabel23.RegularColor = System.Drawing.Color.Empty
         Me.LinkLabel23.Size = New System.Drawing.Size(88, 16)
@@ -337,7 +308,7 @@ Partial Class Form1
         '
         Me.LinkLabel28.ForeColor = System.Drawing.Color.White
         Me.LinkLabel28.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel28.Location = New System.Drawing.Point(217, 57)
+        Me.LinkLabel28.Location = New System.Drawing.Point(217, 35)
         Me.LinkLabel28.Name = "LinkLabel28"
         Me.LinkLabel28.RegularColor = System.Drawing.Color.Empty
         Me.LinkLabel28.Size = New System.Drawing.Size(82, 16)
@@ -348,7 +319,7 @@ Partial Class Form1
         '
         Me.LinkLabel29.ForeColor = System.Drawing.Color.White
         Me.LinkLabel29.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel29.Location = New System.Drawing.Point(13, 79)
+        Me.LinkLabel29.Location = New System.Drawing.Point(13, 57)
         Me.LinkLabel29.Name = "LinkLabel29"
         Me.LinkLabel29.RegularColor = System.Drawing.Color.Empty
         Me.LinkLabel29.Size = New System.Drawing.Size(68, 16)
@@ -359,12 +330,23 @@ Partial Class Form1
         '
         Me.LinkLabel210.ForeColor = System.Drawing.Color.White
         Me.LinkLabel210.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel210.Location = New System.Drawing.Point(87, 79)
+        Me.LinkLabel210.Location = New System.Drawing.Point(87, 57)
         Me.LinkLabel210.Name = "LinkLabel210"
         Me.LinkLabel210.RegularColor = System.Drawing.Color.Empty
         Me.LinkLabel210.Size = New System.Drawing.Size(63, 16)
         Me.LinkLabel210.TabIndex = 13
         Me.LinkLabel210.Text = "Add Radio"
+        '
+        'LinkLabel211
+        '
+        Me.LinkLabel211.ForeColor = System.Drawing.Color.White
+        Me.LinkLabel211.HoverColor = System.Drawing.Color.Empty
+        Me.LinkLabel211.Location = New System.Drawing.Point(156, 57)
+        Me.LinkLabel211.Name = "LinkLabel211"
+        Me.LinkLabel211.RegularColor = System.Drawing.Color.Empty
+        Me.LinkLabel211.Size = New System.Drawing.Size(61, 16)
+        Me.LinkLabel211.TabIndex = 14
+        Me.LinkLabel211.Text = "Edit Radio"
         '
         'Panel2
         '
@@ -1003,54 +985,37 @@ Partial Class Form1
         '
         'listContextMenuStrip
         '
-        Me.listContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteSelectedToolStripMenuItem, Me.AddToToolStripMenuItem, Me.ToolStripSeparator1, Me.ChangeAlbumArtToolStripMenuItem, Me.EditMetadataToolStripMenuItem, Me.ToolStripSeparator2, Me.CreatePlaylistToolStripMenuItem, Me.EditPlaylistToolStripMenuItem})
+        Me.listContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DeleteSelectedToolStripMenuItem, Me.AddToToolStripMenuItem, Me.ToolStripSeparator1, Me.CreatePlaylistToolStripMenuItem, Me.EditPlaylistToolStripMenuItem})
         Me.listContextMenuStrip.Name = "listContextMenuStrip"
-        Me.listContextMenuStrip.Size = New System.Drawing.Size(174, 148)
+        Me.listContextMenuStrip.Size = New System.Drawing.Size(155, 98)
         '
         'DeleteSelectedToolStripMenuItem
         '
         Me.DeleteSelectedToolStripMenuItem.Name = "DeleteSelectedToolStripMenuItem"
-        Me.DeleteSelectedToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.DeleteSelectedToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.DeleteSelectedToolStripMenuItem.Text = "Delete Selected"
         '
         'AddToToolStripMenuItem
         '
         Me.AddToToolStripMenuItem.Name = "AddToToolStripMenuItem"
-        Me.AddToToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.AddToToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.AddToToolStripMenuItem.Text = "Add To"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(170, 6)
-        '
-        'ChangeAlbumArtToolStripMenuItem
-        '
-        Me.ChangeAlbumArtToolStripMenuItem.Name = "ChangeAlbumArtToolStripMenuItem"
-        Me.ChangeAlbumArtToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.ChangeAlbumArtToolStripMenuItem.Text = "Change Album Art"
-        '
-        'EditMetadataToolStripMenuItem
-        '
-        Me.EditMetadataToolStripMenuItem.Name = "EditMetadataToolStripMenuItem"
-        Me.EditMetadataToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
-        Me.EditMetadataToolStripMenuItem.Text = "Edit Metadata"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(170, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(151, 6)
         '
         'CreatePlaylistToolStripMenuItem
         '
         Me.CreatePlaylistToolStripMenuItem.Name = "CreatePlaylistToolStripMenuItem"
-        Me.CreatePlaylistToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.CreatePlaylistToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.CreatePlaylistToolStripMenuItem.Text = "Create Playlist"
         '
         'EditPlaylistToolStripMenuItem
         '
         Me.EditPlaylistToolStripMenuItem.Name = "EditPlaylistToolStripMenuItem"
-        Me.EditPlaylistToolStripMenuItem.Size = New System.Drawing.Size(173, 22)
+        Me.EditPlaylistToolStripMenuItem.Size = New System.Drawing.Size(154, 22)
         Me.EditPlaylistToolStripMenuItem.Text = "Edit Playlist"
         '
         'ImageList1
@@ -1185,17 +1150,6 @@ Partial Class Form1
         '
         Me.vizTimer.Interval = 33
         '
-        'LinkLabel211
-        '
-        Me.LinkLabel211.ForeColor = System.Drawing.Color.White
-        Me.LinkLabel211.HoverColor = System.Drawing.Color.Empty
-        Me.LinkLabel211.Location = New System.Drawing.Point(156, 79)
-        Me.LinkLabel211.Name = "LinkLabel211"
-        Me.LinkLabel211.RegularColor = System.Drawing.Color.Empty
-        Me.LinkLabel211.Size = New System.Drawing.Size(61, 16)
-        Me.LinkLabel211.TabIndex = 14
-        Me.LinkLabel211.Text = "Edit Radio"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -1252,10 +1206,8 @@ Partial Class Form1
     Friend WithEvents rsContent As Panel
     Friend WithEvents quickActionsPane As Panel
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
-    Friend WithEvents LinkLabel24 As wyDay.Controls.LinkLabel2
     Friend WithEvents LinkLabel21 As wyDay.Controls.LinkLabel2
     Friend WithEvents LinkLabel22 As wyDay.Controls.LinkLabel2
-    Friend WithEvents LinkLabel25 As wyDay.Controls.LinkLabel2
     Friend WithEvents LinkLabel26 As wyDay.Controls.LinkLabel2
     Friend WithEvents LinkLabel27 As wyDay.Controls.LinkLabel2
     Friend WithEvents Panel2 As Panel
@@ -1326,11 +1278,8 @@ Partial Class Form1
     Friend WithEvents LinkLabel29 As wyDay.Controls.LinkLabel2
     Friend WithEvents listContextMenuStrip As ContextMenuStrip
     Friend WithEvents DeleteSelectedToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ChangeAlbumArtToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EditMetadataToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AddToToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents CreatePlaylistToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EditPlaylistToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LinkLabel210 As wyDay.Controls.LinkLabel2
