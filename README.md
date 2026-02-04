@@ -37,3 +37,9 @@ The following libraries and components are used in Spectrum:
 <img width="1919" height="1032" alt="Spectrum UI screenshot" src="https://github.com/user-attachments/assets/d11cc0a2-8024-48a6-9b1b-56d58a937b2c" />
 
 <img width="1919" height="1029" alt="Spectrum UI screenshot" src="https://github.com/user-attachments/assets/46e4fcca-cfd7-460e-a0e3-288126a723a8" />
+
+---
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=cbladeOfficial/spectrum&type=date&legend=top-left)](https://www.star-history.com/#cbladeOfficial/spectrum&type=date&legend=top-left)
