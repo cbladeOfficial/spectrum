@@ -3,7 +3,16 @@
 
 **Spectrum** is a passion project of mine. It is basically a media player I wrote for Windows, and for my learning in Visual Basic .NET!
 <br><br>
-This is a rushed markdown, but to compile you need VS 2026 and .NET Framework 4.8.1
+This is a rushed markdown (which I will rewrite in a few days!), but to compile you need VS 2026 and .NET Framework 4.8.1
+<br><br>
+Libraries used:<br>
+1. LibVLC
+2. NAudio
+3. YamlDotNet
+4. WindowsCoreAPI
+5. TagLib
+6. WebView2
+7. LinkLabel2 by wyDay
 <br><br>
 Some UI<br>
 <img width="1919" height="1032" alt="image" src="https://github.com/user-attachments/assets/55a2dbf0-b672-4692-a435-ce470e3a081e" />
