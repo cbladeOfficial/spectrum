@@ -2,32 +2,31 @@
 
 ## Spectrum
 
-**Spectrum** is my passion project. Ita media player for Windows which I built primarily as a learning exercise in Visual Basic .NET. The goal of this project is to mainly explore media playback, audio visualization, and much more on Windows.
+**Spectrum** is my passion project. It is a media player for Windows, and I wrote it mostly as a learning project using Visual Basic .NET. The purpose of this project is to learn mostly about media playback, audio visualization, and many other things on Windows.
 
-This README is temporary and will be expanded and refined soon.
+This README file will be temporary and will be improved later.
 
 ---
 
 ## Building the Project
 
-To compile Spectrum, you will need:
+To build Spectrum, you will need the following:
 
-- Visual Studio 2026
-- .NET Framework 4.8.1
+ - Visual Studio 2026
+ - .NET Framework 4.8.1
 
 ---
 
 ## Libraries Used
+The following libraries and components are used in Spectrum:
 
-Spectrum makes use of the following libraries and components:
-
-1. LibVLC
-2. NAudio
-3. YamlDotNet
-4. Windows Core Audio API
-5. TagLib
-6. Microsoft WebView2
-7. LinkLabel2 by wyDay
+  1. LibVLC
+  2. NAudio
+  2. YamlDotNet
+  4. Windows Core Audio API
+  5. TagLib
+  6. Microsoft WebView2
+  7. LinkLabel2 by wyDay
 
 ---
 
